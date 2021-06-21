@@ -6,7 +6,7 @@
 class PlayerWinScene : public cocos2d::Scene
 {
 public:
-    static cocos2d::Scene* createScene(bool isCheck);
+    static cocos2d::Scene* createScene(int isCheck);
 
     virtual bool init();
 
