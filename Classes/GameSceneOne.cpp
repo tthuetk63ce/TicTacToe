@@ -82,15 +82,14 @@ bool GameSceneOne::init()
         case 0:
             isCheckOne=0;
             CCLOG("%d\n", isCheckOne);
-            if (isCheckOne == 8) CCLOG("Draw\n");
             break;
         case 1:
-            isCheckOne=1;
-            CCLOG("You lose.\n");
+            isCheckOne = 1;
+            this->scheduleOnce(schedule_selector(GameSceneOne::RestartScene), 0.5f);
             break;
         case -1:
-            isCheckOne=-1;
-            CCLOG("This will never Happen. But if it does(It never will), Congratulations, You have beaten the unbeatable\n");
+            isCheckOne = -1;
+            this->scheduleOnce(schedule_selector(GameSceneOne::RestartScene), 0.5f);
             break;
         }
     };
@@ -556,11 +555,9 @@ void GameSceneOne::GotoGameSceneTwo(cocos2d::Ref* pSender) {
     Director::getInstance()->replaceScene(TransitionFade::create(1.0f, scene));
 }
 
-void GameSceneOne::RestartScene() {
+void GameSceneOne::RestartScene(float dt) {
     auto scene = PlayerWinScene::createScene(isCheckOne);
     Director::getInstance()->replaceScene(TransitionFade::create(0.5f, scene));
-    isCheckOne = 0;
-    
 }
 
 void GameSceneOne::update(float up) {

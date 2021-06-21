@@ -14,7 +14,7 @@ public:
     // a selector callback
     void menuCloseCallback(cocos2d::Ref* pSender);
     void GotoGameSceneTwo(cocos2d::Ref* pSender);
-    void RestartScene();
+    void RestartScene(float dt);
     void LoadPlayScene();
     void update(float up) override;
     void ACheckWin(float ai);
