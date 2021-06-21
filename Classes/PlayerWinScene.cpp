@@ -5,7 +5,7 @@
 
 USING_NS_CC;
 bool isCheckS;
-Scene* PlayerWinScene::createScene(bool isCheck)
+Scene* PlayerWinScene::createScene(int isCheck)
 {
     isCheckS = isCheck;
     return PlayerWinScene::create();
@@ -25,15 +25,20 @@ bool PlayerWinScene::init()
 
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
-    if(isCheckS){
+    if(isCheckS = -1){
         auto x_win = Sprite::create("image/w2.png");
         x_win->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
         this->addChild(x_win, 0);
     }
-    else {
+    else if(isCheckS = 1) {
         auto o_win = Sprite::create("image/w1.png");
         o_win->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
         this->addChild(o_win, 0);
+    }
+    else if(isCheckS = 0) {
+        auto draw = Sprite::create("image/w3.png");
+        draw->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
+        this->addChild(draw, 0);
     }
     this->scheduleOnce(schedule_selector(PlayerWinScene::RestartSceneOne), 1.0f);
     return true;
